@@ -1328,11 +1328,19 @@ function ChatBox({ onClose, onApplyDashboard }) {
   const [input, setInput] = useState("");
   const [streaming, setStreaming] = useState(false);
   const [showConfig, setShowConfig] = useState(false);
-  const [config, setConfig] = useState({
-    endpoint: "/openclaw",
-    token: "",
-    agentId: "main",
+  const [config, setConfig] = useState(() => {
+    try {
+      const saved = localStorage.getItem("openclaw_config");
+      if (saved) return JSON.parse(saved);
+    } catch {}
+    return { endpoint: "/openclaw", token: "", agentId: "main" };
   });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("openclaw_config", JSON.stringify(config));
+    } catch {}
+  }, [config]);
   const bottomRef = useRef(null);
 
   useEffect(() => {
