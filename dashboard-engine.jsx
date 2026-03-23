@@ -1329,7 +1329,7 @@ function ChatBox({ onClose, onApplyDashboard }) {
   const [streaming, setStreaming] = useState(false);
   const [showConfig, setShowConfig] = useState(false);
   const [config, setConfig] = useState({
-    endpoint: "http://localhost:18789",
+    endpoint: "/openclaw",
     token: "",
     agentId: "main",
   });

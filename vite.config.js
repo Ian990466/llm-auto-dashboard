@@ -6,6 +6,11 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": "http://localhost:3001",
+      "/openclaw": {
+        target: "http://localhost:18789",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/openclaw/, ""),
+      },
     },
   },
 });
