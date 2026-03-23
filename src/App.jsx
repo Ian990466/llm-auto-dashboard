@@ -1,8 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DashboardEngine from "../dashboard-engine";
 
 export default function App() {
   const [dashboardData, setDashboardData] = useState(null);
+
+  // Auto-reload when any dashboard JSON changes on disk
+  useEffect(() => {
+    const es = new EventSource("/api/dashboards/events");
+    es.onmessage = (e) => {
+      try {
+        const { data } = JSON.parse(e.data);
+        setDashboardData(data);
+      } catch {}
+    };
+    return () => es.close();
+  }, []);
 
   const onApplyDashboard = async (data) => {
     const slug = (data.meta?.title || "dashboard")

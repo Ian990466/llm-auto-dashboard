@@ -1,5 +1,6 @@
 import express from "express";
 import { readdir, readFile, writeFile } from "fs/promises";
+import { watch } from "fs";
 import { join, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -8,6 +9,37 @@ const DASHBOARDS_DIR = join(__dirname, "dashboards");
 
 const app = express();
 const PORT = 3001;
+
+// SSE clients waiting for file-change events
+const sseClients = new Set();
+
+// Watch dashboards/ directory and broadcast to all SSE clients
+watch(DASHBOARDS_DIR, async (_eventType, filename) => {
+  if (!filename?.endsWith(".json")) return;
+  const id = filename.replace(/\.json$/, "");
+  // Debounce: wait a tick so the file is fully written
+  setTimeout(async () => {
+    try {
+      const raw = await readFile(join(DASHBOARDS_DIR, filename), "utf-8");
+      const data = JSON.parse(raw);
+      const payload = JSON.stringify({ id, data });
+      for (const client of sseClients) {
+        client.write(`data: ${payload}\n\n`);
+      }
+    } catch {
+      // File may have been deleted or not yet ready — ignore
+    }
+  }, 200);
+});
+
+app.get("/api/dashboards/events", (req, res) => {
+  res.setHeader("Content-Type", "text/event-stream");
+  res.setHeader("Cache-Control", "no-cache");
+  res.setHeader("Connection", "keep-alive");
+  res.flushHeaders();
+  sseClients.add(res);
+  req.on("close", () => sseClients.delete(res));
+});
 
 app.get("/api/dashboards", async (_req, res) => {
   try {

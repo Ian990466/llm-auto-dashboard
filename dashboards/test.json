@@ -1,0 +1,187 @@
+{
+  "meta": {
+    "title": "台灣經濟指標月報",
+    "description": "115 年 1-2 月主要經濟指標摘要",
+    "generated_at": "2026-03-23T15:52:00+08:00",
+    "version": "1.0"
+  },
+  "layout": { "columns": 12, "gap": 16 },
+  "widgets": [
+    {
+      "id": "kpi-gdp",
+      "type": "kpi",
+      "title": "經濟成長率 (YoY)",
+      "span": { "cols": 3 },
+      "config": {},
+      "data": {
+        "items": [
+          {
+            "label": "經濟成長率",
+            "value": 7.71,
+            "change": 0,
+            "prefix": "",
+            "suffix": "%",
+            "format": "percent",
+            "badge": "115 年預測"
+          }
+        ]
+      }
+    },
+    {
+      "id": "kpi-cpi",
+      "type": "kpi",
+      "title": "消費者物價指數",
+      "span": { "cols": 3 },
+      "config": {},
+      "data": {
+        "items": [
+          {
+            "label": "年增率",
+            "value": 1.75,
+            "change": 0,
+            "prefix": "",
+            "suffix": "%",
+            "format": "percent",
+            "badge": "115 年 2 月"
+          }
+        ]
+      }
+    },
+    {
+      "id": "kpi-unemployment",
+      "type": "kpi",
+      "title": "失業率",
+      "span": { "cols": 3 },
+      "config": {},
+      "data": {
+        "items": [
+          {
+            "label": "失業率",
+            "value": 3.29,
+            "change": 0,
+            "prefix": "",
+            "suffix": "%",
+            "format": "percent",
+            "badge": "115 年 1 月"
+          }
+        ]
+      }
+    },
+    {
+      "id": "kpi-salary",
+      "type": "kpi",
+      "title": "經常性薪資",
+      "span": { "cols": 3 },
+      "config": {},
+      "data": {
+        "items": [
+          {
+            "label": "每人每月",
+            "value": 48819,
+            "change": 0,
+            "prefix": "$",
+            "suffix": "元",
+            "format": "number",
+            "badge": "115 年 1 月"
+          }
+        ]
+      }
+    },
+    {
+      "id": "chart-industrial",
+      "type": "gauge",
+      "title": "工業生產指數年增率",
+      "span": { "cols": 4 },
+      "config": {
+        "min": 0,
+        "max": 50,
+        "thresholds": [10, 20, 35],
+        "labels": ["弱", "中", "強", "極強"]
+      },
+      "data": {
+        "value": 27.88
+      }
+    },
+    {
+      "id": "table-summary",
+      "type": "table",
+      "title": "經濟指標總覽",
+      "span": { "cols": 8 },
+      "config": {
+        "columns": [
+          {
+            "key": "metric",
+            "label": "指標名稱",
+            "width": 200,
+            "sortable": true
+          },
+          {
+            "key": "value",
+            "label": "數值",
+            "width": 120,
+            "format": "number",
+            "sortable": true
+          },
+          {
+            "key": "unit",
+            "label": "單位",
+            "width": 80,
+            "sortable": false
+          },
+          {
+            "key": "period",
+            "label": "統計期間",
+            "width": 150,
+            "sortable": true
+          }
+        ],
+        "pageSize": 10,
+        "searchable": false
+      },
+      "data": {
+        "rows": [
+          {
+            "metric": "經濟成長率",
+            "value": 7.71,
+            "unit": "%",
+            "period": "115 年預測"
+          },
+          {
+            "metric": "消費者物價指數年增率",
+            "value": 1.75,
+            "unit": "%",
+            "period": "115 年 2 月"
+          },
+          {
+            "metric": "失業率",
+            "value": 3.29,
+            "unit": "%",
+            "period": "115 年 1 月"
+          },
+          {
+            "metric": "工業及服務業每人每月經常性薪資",
+            "value": 48819,
+            "unit": "元",
+            "period": "115 年 1 月"
+          },
+          {
+            "metric": "工業生產指數年增率",
+            "value": 27.88,
+            "unit": "%",
+            "period": "115 年 1 月"
+          }
+        ]
+      }
+    },
+    {
+      "id": "markdown-analysis",
+      "type": "markdown",
+      "title": "經濟分析摘要",
+      "span": { "cols": 12 },
+      "config": {},
+      "data": {
+        "content": "### 📊 經濟概況分析\n\n**✅ 正面信號：**\n- **經濟成長強勁**：7.71% 的年增率顯示經濟擴張快速\n- **工業生產爆發**：27.88% 的工業生產指數年增率，反映製造業活絡\n- **失業率低**：3.29% 的失業率處於歷史低檔，就業市場穩健\n- **薪資成長**：每月 48,819 元的經常性薪資，反映勞動力市場緊俏\n\n**⚠️ 關注點：**\n- **通膨溫和**：1.75% 的 CPI 年增率雖未達目標，但顯示物價穩定\n- **薪資與通膨差距**：薪資成長速度需持續追蹤，以確認實質購買力\n\n**🎯 關鍵指標：**\n- 工業生產指數 27.88% → **極強** (超過 20% 門檻)\n- 失業率 3.29% → **健康** (低於 4% 為佳)\n- CPI 1.75% → **穩定** (2% 目標附近)\n\n> 整體經濟呈現強勁成長態勢，工業部門表現尤其亮眼，就業市場緊俏帶動薪資成長。"
+      }
+    }
+  ]
+}
